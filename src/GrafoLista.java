@@ -68,14 +68,19 @@ public class GrafoLista {
     
 
     public void profundidad() {
+        long inicioNano = System.nanoTime();
+        long inicioMillis = System.currentTimeMillis();
         boolean[] visitados = new boolean[numNodos];
         for (int i = 0; i < numNodos; i++) {
             if (!visitados[i]) {
                 recorrerProfundidad(i, visitados);
             }
         }
+        long finNano = System.nanoTime();
+        long finMillis = System.currentTimeMillis();
+        System.out.println("Tiempo en nanoTime: " + (finNano-inicioNano) + " ns");
+        System.out.println("Tiempo en currentMillis: " + (finMillis-inicioMillis) + " ms");
     }
-
     private void recorrerProfundidad(int v, boolean[] visitados) {
         visitados[v] = true;
         System.out.println("Visitando nodo: " + v);
@@ -85,8 +90,9 @@ public class GrafoLista {
             }
         }
     }
-
     public void amplitud() {
+        long inicioNano = System.nanoTime();
+        long inicioMillis = System.currentTimeMillis();
         boolean[] visitados = new boolean[numNodos];
         Cola cola = new Cola();
         for (int i = 0; i < numNodos; i++) {
@@ -105,5 +111,10 @@ public class GrafoLista {
                 }
             }
         }
+        long finNano = System.nanoTime();
+        long finMillis = System.currentTimeMillis();
+        System.out.println("Tiempo en nanoTime: " + (finNano-inicioNano) + " ns");
+        System.out.println("Tiempo en currentMillis: " + (finMillis-inicioMillis) + " ms");
     }
+
 }

@@ -72,6 +72,8 @@ public class GrafoMatriz {
     }
 
     public void profundidad(){
+        long inicioNano = System.nanoTime();
+        long inicioMillis = System.currentTimeMillis();
         boolean[] visitados= new boolean[numNodos];
         for (int i=0; i<numNodos; i++){
             visitados[i]=false;
@@ -81,6 +83,10 @@ public class GrafoMatriz {
                 recorrerProfundidad(i, visitados);
             }
         }
+        long finNano = System.nanoTime();
+        long finMillis = System.currentTimeMillis();
+        System.out.println("Tiempo en nanoTime: " + (finNano-inicioNano) + " ns");
+        System.out.println("Tiempo en currentMillis: " + (finMillis-inicioMillis) + " ms");
     }
 
     public void recorrerProfundidad(int v, boolean[]visitados){
@@ -95,13 +101,13 @@ public class GrafoMatriz {
     }
  
     public void amplitud() {
+        long inicioNano = System.nanoTime();
+        long inicioMillis = System.currentTimeMillis();
         boolean[] visitados = new boolean[numNodos];
         for (int i = 0; i < numNodos; i++) {
             visitados[i] = false;
         }
-
         Cola cola = new Cola();
-
         for (int i = 0; i < numNodos; i++) {
             if (!visitados[i]) {
                 cola.encolar(i);
@@ -120,6 +126,11 @@ public class GrafoMatriz {
                 }
             }
         }
+        long finNano = System.nanoTime();
+        long finMillis = System.currentTimeMillis();
+        System.out.println("Tiempo en nanoTime: " + (finNano-inicioNano) + " ns");
+        System.out.println("Tiempo en currentMillis: " + (finMillis-inicioMillis) + " ms");
+    
     }
 
 

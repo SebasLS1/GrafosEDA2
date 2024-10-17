@@ -28,10 +28,8 @@ public class GrafoMatriz {
 
     public void insertarNodo(int nodosAAgregar) {
         int nuevoTamaño = numNodos + nodosAAgregar;
-        // Aquí actualizamos nodosMax para que se ajuste al nuevo tamaño
         nodosMax = Math.max(nodosMax, nuevoTamaño);
         boolean[][] nuevaMatriz = new boolean[nuevoTamaño][nuevoTamaño];
-        // Copia la matriz antigua en la nueva
         for (int i = 0; i < numNodos; i++) {
             for (int j = 0; j < numNodos; j++) {
                 nuevaMatriz[i][j] = matriz[i][j];
@@ -40,22 +38,20 @@ public class GrafoMatriz {
         matriz = nuevaMatriz;
         numNodos = nuevoTamaño;
         System.out.println("Nodos agregados. Total de nodos: " + numNodos);
+        mostrar();  // Mostrar la matriz después de agregar nodos
     }
     
-
-    public void eliminarNodo(int nodo){
+    public void eliminarNodo(int nodo) {
         if (nodo < numNodos) {
-            // Elimina las aristas conectadas al nodo
             for (int i = 0; i < numNodos; i++) {
                 matriz[nodo][i] = false;
                 matriz[i][nodo] = false;
             }
-            // Crea una nueva matriz sin el nodo eliminado
             boolean[][] nuevaMatriz = new boolean[numNodos - 1][numNodos - 1];
             for (int i = 0, ni = 0; i < numNodos; i++) {
-                if (i == nodo) continue;  // Salta el nodo eliminado
+                if (i == nodo) continue;
                 for (int j = 0, nj = 0; j < numNodos; j++) {
-                    if (j == nodo) continue;  // Salta el nodo eliminado
+                    if (j == nodo) continue;
                     nuevaMatriz[ni][nj] = matriz[i][j];
                     nj++;
                 }
@@ -64,10 +60,12 @@ public class GrafoMatriz {
             matriz = nuevaMatriz;
             numNodos--;
             System.out.println("Nodo " + nodo + " eliminado. Total de nodos: " + numNodos);
+            mostrar();  // Mostrar la matriz después de eliminar nodos
         } else {
-            System.out.println("Ese nodo no existe");
+            System.out.println("Ese nodo no existe.");
         }
     }
+    
 
     public boolean existeArista(int origen, int destino){
         return matriz[origen][destino];

@@ -68,4 +68,62 @@ public class GrafoMatriz {
             System.out.println("Ese nodo no existe");
         }
     }
+
+    public boolean existeArista(int origen, int destino){
+        return matriz[origen][destino];
+    }
+
+    public void profundidad(){
+        boolean[] visitados= new boolean[numNodos];
+        for (int i=0; i<numNodos; i++){
+            visitados[i]=false;
+        }
+        for(int i=0; i<numNodos; i++){
+            if(!visitados[i]){
+                recorrerProfundidad(i, visitados);
+            }
+        }
+    }
+
+    public void recorrerProfundidad(int v, boolean[]visitados){
+        visitados[v]=true;
+        System.out.println("Visitando nodo: "+v);
+        for (int i=0; i<numNodos; i++){
+            if (!visitados[i]&&existeArista(v, i)){
+                System.out.println("Ir de " + v + " a " + i);
+                recorrerProfundidad(i, visitados);
+            }
+        }
+    }
+ 
+    public void amplitud() {
+        boolean[] visitados = new boolean[numNodos];
+        for (int i = 0; i < numNodos; i++) {
+            visitados[i] = false;
+        }
+
+        Cola cola = new Cola();
+
+        for (int i = 0; i < numNodos; i++) {
+            if (!visitados[i]) {
+                cola.encolar(i);
+                visitados[i] = true;
+
+                while (!cola.estaVacia()) {
+                    int v = cola.desencolar();
+                    System.out.println("Visitando nodo: " + v);
+
+                    for (int j = 0; j < numNodos; j++) {
+                        if ((v != j) && existeArista(v, j) && !visitados[j]) {
+                            cola.encolar(j);
+                            visitados[j] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
 }

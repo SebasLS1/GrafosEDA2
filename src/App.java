@@ -37,8 +37,9 @@ public class App {
                     System.out.println("Ingrese:");
                     System.out.println("1. Si quiere agregar nodos");
                     System.err.println("2. Si quiere eliminar nodos");
-                    System.out.println("3. Salir");
-
+                    System.out.println("3. Desea hacer el recorrido en profundidad");
+                    System.out.println("4. Desea hacer el recorrido en anchura");
+                    System.out.println("5. Salir");
                     int opcionMatriz = scanner.nextInt();
                     switch (opcionMatriz) {
                         case 1:
@@ -54,6 +55,14 @@ public class App {
                             manejarAristas(scanner, grafo);
                             break;
                         case 3:
+                        System.out.println("Recorrido en profundidad (DFS): ");
+                        grafo.profundidad();
+                        break;
+                        case 4:
+                        System.out.println("Recorrido en amplitud (BFS):");
+                        grafo.amplitud();
+                        break;
+                        case 5:
                             continuar = false;
                             System.out.println("Saliendo...");
                             break;
